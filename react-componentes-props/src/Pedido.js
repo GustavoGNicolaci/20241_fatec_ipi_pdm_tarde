@@ -1,5 +1,5 @@
-const Pedido = (props) => {
-    const {icone, titulo, descricao} = props
+const Pedido = ({icone, titulo, descricao}) => {
+    //const {icone, titulo, descricao} = props
     return (
             <div className="d-flex">
                 <div className='d-flex align-items-center'>
