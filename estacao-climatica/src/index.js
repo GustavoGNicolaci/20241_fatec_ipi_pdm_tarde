@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import '@fortawesome/fontawesome-free/css/all.min.css'
 import ReactDOM from 'react-dom'
 import React from 'react'
+import EstacaoClimatica from './EstacaoClimatica'
 
 class App extends React.Component {
     // constructor(props) {
@@ -106,34 +107,15 @@ class App extends React.Component {
             <div className="container mt-4">
                 <div className="row justify-content-center">
                     <div className="col-12 col-md-8">
-                        <div className="card">
-                            {/* corpo */}
-                            <div className="card-body">
-                                <div style={{height: '6rem'}} className="ps-2 d-flex align-items-center border rounded mb-2">
-                                    <i className={`fa-solid fa-5x ${this.state.icone}`}></i>
-                                    <p className="w-75 ms-3 text-center fs-1">{this.state.estacao}</p>
-                                </div>
-                                <div>
-                                    <p className="text-center mt-3">
-                                        {
-                                            this.state.latitude
-                                            ? `Coords: ${this.state.latitude}, ${this.state.longitude}. Data: ${this.state.data}`
-                                            : this.state.mensagemDeErro ? `${this.state.mensagemDeErro}` 
-                                            : 'Clique no botão para saber sua estação climática.'
-                                        }
-                                    </p>
-                                </div>
-                                <div>
-                                    <button className='btn btn-outline-primary w-100 mt-2' onClick={this.obterLocalizacao} disabled={this.state.erro}>
-                                        Qual a minha estação?
-                                    </button>
-                                    <button className="btn btn-outline-danger w-100 mt-2" 
-                                    onClick={() => ReactDOM.unmountComponentAtNode(document.querySelector('#root'))}>
-                                        Remover App
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                        <EstacaoClimatica
+                            latitude={this.state.latitude}
+                            longitude={this.state.longitude}
+                            estacao={this.state.estacao}
+                            data={this.state.data}
+                            icone={this.state.icone}
+                            mensagemDeErro={this.state.mensagemDeErro}
+                            obterLocalizacao={this.obterLocalizacao}
+                        />
                     </div>
                 </div>
             </div>
