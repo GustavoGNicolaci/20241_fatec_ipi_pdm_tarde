@@ -4,16 +4,38 @@ import ReactDOM from 'react-dom'
 import React from 'react'
 
 class App extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            latitude: null,
-            longitude: null,
-            estacao: null,
-            data: null,
-            icone: null,
-            mensagemDeErro: null
-        }
+    // constructor(props) {
+    //     super(props)
+    //     this.state = {
+    //         latitude: null,
+    //         longitude: null,
+    //         estacao: null,
+    //         data: null,
+    //         icone: null,
+    //         mensagemDeErro: null
+    //     }
+    //     console.log('Construtor')
+    // }
+
+    state = {
+        latitude: null,
+        longitude: null,
+        estacao: null,
+        data: null,
+        icone: null,
+        mensagemDeErro: null
+    }
+
+    componentDidMount() {
+        this.obterLocalizacao()
+    }
+
+    componentDidUpdate() {
+        console.log('Componente atualizado')
+    }
+
+    componentWillUnmount() {
+        console.log('Componente desmontado')
     }
 
     obterEstacao = (data, latitude) => {
@@ -78,7 +100,8 @@ class App extends React.Component {
     }
 
     render() {
-        console.log(this.state)
+        console.log('Render')
+        //console.log(this.state)
         return (
             <div className="container mt-4">
                 <div className="row justify-content-center">
@@ -104,6 +127,10 @@ class App extends React.Component {
                                     <button className='btn btn-outline-primary w-100 mt-2' onClick={this.obterLocalizacao} disabled={this.state.erro}>
                                         Qual a minha estação?
                                     </button>
+                                    <button className="btn btn-outline-danger w-100 mt-2" 
+                                    onClick={() => ReactDOM.unmountComponentAtNode(document.querySelector('#root'))}>
+                                        Remover App
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -127,5 +154,5 @@ class App extends React.Component {
 
 ReactDOM.render(
     <App />,
-    document.getSelector('#root')
-)
+    document.querySelector('#root')
+);
