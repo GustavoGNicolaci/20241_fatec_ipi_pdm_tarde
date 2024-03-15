@@ -12,7 +12,7 @@ class App extends React.Component {
             estacao: null,
             data: null,
             icone: null,
-            erro: null
+            mensagemDeErro: null
         }
     }
 
@@ -63,7 +63,7 @@ class App extends React.Component {
                 //quando houver erro:
                 console.log(erro)
                 this.setState({
-                    erro: 'Por favor, permita o acesso a sua localização.'
+                    mensagemDeErro: 'Por favor, permita o acesso a sua localização.'
                 })
 
             }
@@ -78,6 +78,7 @@ class App extends React.Component {
     }
 
     render() {
+        console.log(this.state)
         return (
             <div className="container mt-4">
                 <div className="row justify-content-center">
@@ -94,15 +95,13 @@ class App extends React.Component {
                                         {
                                             this.state.latitude
                                             ? `Coords: ${this.state.latitude}, ${this.state.longitude}. Data: ${this.state.data}`
+                                            : this.state.mensagemDeErro ? `${this.state.mensagemDeErro}` 
                                             : 'Clique no botão para saber sua estação climática.'
                                         }
                                     </p>
-                                    <p className="text-center text-danger">
-                                        {this.state.erro}
-                                    </p>
                                 </div>
                                 <div>
-                                    <button className='btn btn-outline-primary w-100 mt-2' onClick={this.obterLocalizacao}>
+                                    <button className='btn btn-outline-primary w-100 mt-2' onClick={this.obterLocalizacao} disabled={this.state.erro}>
                                         Qual a minha estação?
                                     </button>
                                 </div>
