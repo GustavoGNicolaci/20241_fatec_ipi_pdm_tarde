@@ -28,7 +28,7 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        this.obterLocalizacao()
+
     }
 
     componentDidUpdate() {
@@ -50,13 +50,13 @@ class App extends React.Component {
         //21/3
         const d4 = new Date(anoAtual, 2, 21)
         const estouNoSul = latitude < 0
-        if(data >= d1 && data < d2) {
+        if (data >= d1 && data < d2) {
             return estouNoSul ? 'Inverno' : 'Verão'
         }
-        if(data >= d2 && data < d3) {
+        if (data >= d2 && data < d3) {
             return estouNoSul ? 'Primavera' : 'Outono'
         }
-        if(data >= d3 || data < d4) {
+        if (data >= d3 || data < d4) {
             return estouNoSul ? 'Verão' : 'Inverno'
         }
         return estouNoSul ? 'Outono' : 'Primavera'
@@ -96,7 +96,7 @@ class App extends React.Component {
     icones = {
         'Primavera': 'fa-seedling',
         'Verão': 'fa-sun',
-        'Outono': 'fa-canadian-maple-leaf',
+        'Outono': 'fa-leaf',
         'Inverno': 'fa-snowflake'
     }
 
@@ -107,15 +107,21 @@ class App extends React.Component {
             <div className="container mt-4">
                 <div className="row justify-content-center">
                     <div className="col-12 col-md-8">
-                        <EstacaoClimatica
-                            latitude={this.state.latitude}
-                            longitude={this.state.longitude}
-                            estacao={this.state.estacao}
-                            data={this.state.data}
-                            icone={this.state.icone}
-                            mensagemDeErro={this.state.mensagemDeErro}
-                            obterLocalizacao={this.obterLocalizacao}
-                        />
+                        {
+                            this.state.mensagemDeErro ?
+                            <p className='border rounded p-2 fs-1 text-center'>
+                                É preciso dar acesso. Por favor, refaça o procedimento.
+                            </p> :
+                            <EstacaoClimatica
+                                latitude={this.state.latitude}
+                                longitude={this.state.longitude}
+                                estacao={this.state.estacao}
+                                data={this.state.data}
+                                icone={this.state.icone}
+                                mensagemDeErro={this.state.mensagemDeErro}
+                                obterLocalizacao={this.obterLocalizacao}
+                            />
+                        }
                     </div>
                 </div>
             </div>
