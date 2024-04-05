@@ -14,12 +14,13 @@ export default class Busca extends Component {
 
     onFormSubmit = (event) => {
         event.preventDefault()
+        this.props.onBuscaRealizada(this.state.termoDaBusca)
     }
 
     render() {
         return (
             <form onSubmit={this.onFormSubmit}>
-                <div class='flex flex-column'>
+                <div className='flex flex-column'>
                     <span className="p-input-icon-left w-full">
                         <i className="pi pi-search" />
                         <InputText
