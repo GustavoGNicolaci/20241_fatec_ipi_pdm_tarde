@@ -25,7 +25,7 @@ export default class App extends React.Component {
         pexelsClient.get('/search', {
             params: {
                 query: termo,
-                per_page: 2
+                per_page: 4
             }
         }).then((results) => {
             this.setState({ photos: results.data.photos })
@@ -52,9 +52,12 @@ export default class App extends React.Component {
                     />
                 </div>
                 <div className="col-8">
-                    {
-                        <ListaImagens photos={this.state.photos} />
-                    }
+                    <div className="grid">
+                        <ListaImagens
+                            photos={this.state.photos}
+                            imgStyle={"col-12 lg:col-6 xl:col-4"}
+                        />
+                    </div>
                 </div>
             </div>
         )
