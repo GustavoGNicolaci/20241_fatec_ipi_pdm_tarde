@@ -5,7 +5,7 @@ import Photographer from "./Photographer";
 const ListaImagens = ({ photos, imgStyle }) => {
     return (
         photos.map((photo) => (
-            <div>
+            <div className="grid">
                 <Imagem
                     imgStyle={imgStyle}
                     src={photo.src.small}
