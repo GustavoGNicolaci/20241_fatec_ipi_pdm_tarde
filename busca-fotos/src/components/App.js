@@ -1,6 +1,5 @@
 import React from 'react'
 import Busca from './Busca'
-import env from 'react-dotenv'
 import ListaImagens from './ListaImagens'
 import PexelsLogo from './PexelsLogo'
 import pexelsClient from '../utils/pexelsClient'
