@@ -1,0 +1,18 @@
+10/05/2024
+
+04 - Criar um coponente React para exibir ícones de redes sociais. Ele deve exibir três ícones e deve ser posicionado logo abaixo da lista de lembretes. 
+
+03 - Evitar que a adição de lembretes vazio (zero caracteres) aconteça
+
+02 - Ler a documentação de Pressable e trocar o Button por Pressable, aplique estilos para deixá-lo visualmente agradável
+
+01 - Ajustar o código para que o componente controlado coloque o texto em letra maiúsculas
+
+03/05/2024
+Ajustar o projeto primeiro-projeto da seguinte forma:
+
+- Converta o componente atual para que ele seja definido por meio de uma classe
+- Use um componente textual para capturar dois valores numéricos do usuário
+- Use um botão para fazer a soma deles
+- Exiba o resultado em outro componente textual não editável
+- Vasculhe o site oficil do React Native para encontrar os componentes visuais mais apropriados e descobrir como eles funcionam.
