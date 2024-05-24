@@ -28,25 +28,25 @@ type Lembrete = {
 }
 
 export default function App() {
-  const [lembrete, setLembrete] = useState<Lembrete>({texto: ''})
+  const [lembrete, setLembrete] = useState<Lembrete | null>(null)
   const [lembretes, setLembretes] = useState<Lembrete[]>([])
   const [editando, setEditando] = useState<boolean>(false)
 
   const adicionar = () => {
-    if (lembrete.texto.trim() === '') {
+    if (lembrete?.texto.trim() === '') {
       return alert('Digite um lembrete.')
     }
     else {
       const novoLembrete: Lembrete = {
         id: Date.now().toString(),
-        texto: lembrete.texto
+        texto: lembrete!.texto
       }
 
       setLembretes(lembretesAtual => [
         novoLembrete,
         ...lembretesAtual,
       ])
-      setLembrete({texto: ''})
+      setLembrete({ texto: '' })
     }
   }
 
@@ -74,31 +74,29 @@ export default function App() {
   }
 
   const atualizar = () => {
-    if (lembrete.texto.trim() === '') {
+    if (lembrete!.texto.trim() === '') {
       return alert('Digite um lembrete.')
     }
     else {
       setLembretes(
         lembretesAtual => lembretesAtual.map(item => {
-          if (item.id === lembrete.id) {
-            return lembrete
+          if (item.id === lembrete!.id) {
+            return lembrete!
           }
           return item
         })
       )
-      setLembrete({texto: ''})
+      setLembrete({ texto: '' })
       setEditando(false)
     }
   }
-
-
 
   return (
     <View style={styles.container}>
       <TextInput
         style={styles.inputs}
         placeholder="Digite um lembrete..."
-        value={lembrete.texto}
+        value={lembrete?.texto}
         onChangeText={texto => setLembrete({ ...lembrete, texto: texto.toUpperCase() })}
       />
 
@@ -118,7 +116,7 @@ export default function App() {
         <Text
           style={styles.buttonText}
         >
-        Aperte para adicionar e segure para editar
+          {editando ? 'Segure para atualizar o lembrete' : 'Aperte para adicionar o lembrete'}
         </Text>
       </Pressable>
 
@@ -141,7 +139,7 @@ export default function App() {
               </Pressable>
               <Pressable
                 onPress={() => {
-                  setLembrete({id: lembrete.item.id, texto: lembrete.item.texto})
+                  setLembrete({ id: lembrete.item.id, texto: lembrete.item.texto })
                   setEditando(true)
                 }}
               >
@@ -213,11 +211,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     margin: 8,
     flexDirection: 'row',
+    alignItems: 'center',
   },
 
   listItemText: {
     width: '70%',
     textAlign: 'center',
+    //alignSelf: 'center',   
   },
 
   listItemButtons: {
